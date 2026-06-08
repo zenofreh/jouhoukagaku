@@ -124,6 +124,38 @@ h1 {
   font-size: 25px;
 }
 
+.shuffle-setting {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  width: min(520px, 100%);
+  margin: 0;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.shuffle-setting legend {
+  padding: 0 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.shuffle-setting label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.shuffle-setting input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
 .primary-action {
   display: inline-grid;
   place-items: center;

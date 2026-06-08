@@ -9,6 +9,8 @@
     answers: [],
     locked: false,
     advanceTimer: null,
+    shuffleOptions: true,
+    currentOptions: [],
   };
 
   const els = {
@@ -17,6 +19,7 @@
     resultView: document.getElementById("resultView"),
     startRandomButton: document.getElementById("startRandomButton"),
     startAllButton: document.getElementById("startAllButton"),
+    shuffleInputs: [...document.querySelectorAll('input[name="shuffleOptions"]')],
     homeButton: document.getElementById("homeButton"),
     retryButton: document.getElementById("retryButton"),
     startQuestionCount: document.getElementById("startQuestionCount"),
@@ -75,6 +78,19 @@
     return items[Math.floor(Math.random() * items.length)];
   }
 
+  function shuffled(items) {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function selectedShuffleSetting() {
+    return els.shuffleInputs.find((input) => input.checked)?.value !== "off";
+  }
+
   function buildQuiz(mode) {
     clearAdvanceTimer();
     state.quiz = mode === "all"
@@ -105,6 +121,7 @@
   }
 
   function startQuiz(mode) {
+    state.shuffleOptions = selectedShuffleSetting();
     buildQuiz(mode);
     showOnly("quiz");
     renderQuestion();
@@ -116,6 +133,7 @@
     state.answers = [];
     state.locked = false;
     state.quiz = [];
+    state.currentOptions = [];
     els.optionList.innerHTML = "";
     els.resultMessage.textContent = "";
     showOnly("start");
@@ -149,27 +167,33 @@
     els.resultMessage.textContent = "";
     els.resultMessage.className = "result-message";
     els.optionList.innerHTML = "";
+    state.currentOptions = (state.shuffleOptions ? shuffled(item.options) : [...item.options])
+      .map((option, index) => ({
+        ...option,
+        originalLabel: option.label,
+        displayLabel: String.fromCharCode(65 + index),
+      }));
 
-    item.options.forEach((option) => {
+    state.currentOptions.forEach((option) => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "option";
-      button.dataset.label = option.label;
+      button.dataset.label = option.originalLabel;
 
       const label = document.createElement("span");
       label.className = "label";
-      label.textContent = option.label;
+      label.textContent = option.displayLabel;
 
       const text = document.createElement("span");
       text.textContent = option.text;
       button.append(label, text);
 
-      button.addEventListener("click", () => chooseAnswer(option.label));
+      button.addEventListener("click", () => chooseAnswer(option.originalLabel, option.displayLabel));
       els.optionList.append(button);
     });
   }
 
-  function chooseAnswer(label) {
+  function chooseAnswer(label, displayLabel) {
     if (state.locked) return;
 
     const item = currentQuestion();
@@ -177,16 +201,17 @@
 
     state.locked = true;
     const correct = label === item.answer;
-    state.answers.push({ item, selected: label, correct });
+    const answerDisplay = state.currentOptions.find((option) => option.originalLabel === item.answer)?.displayLabel || item.answer;
+    state.answers.push({ item, selected: label, selectedDisplay: displayLabel, answerDisplay, correct });
 
     [...els.optionList.querySelectorAll(".option")].forEach((button) => {
       button.disabled = true;
-      if (button.dataset.label === item.answer) button.classList.add("correct");
+        if (button.dataset.label === item.answer) button.classList.add("correct");
       if (button.dataset.label === label && !correct) button.classList.add("incorrect");
     });
 
     els.scoreText.textContent = `${score()}点`;
-    els.resultMessage.textContent = correct ? "正解" : `不正解  正解は ${item.answer}`;
+    els.resultMessage.textContent = correct ? "正解" : `不正解  正解は ${answerDisplay}`;
     els.resultMessage.className = correct ? "result-message good" : "result-message bad";
 
     state.advanceTimer = window.setTimeout(() => {
@@ -217,7 +242,7 @@
     els.reviewList.innerHTML = "";
     [...state.answers]
       .sort((a, b) => Number(a.correct) - Number(b.correct) || a.item.number - b.item.number)
-      .forEach(({ item, selected, correct }) => {
+      .forEach(({ item, selected, selectedDisplay, answerDisplay, correct }) => {
       const selectedOption = item.options.find((opt) => opt.label === selected);
       const answerOption = item.options.find((opt) => opt.label === item.answer);
 
@@ -229,8 +254,8 @@
           <span>${correct ? "正解" : "不正解"}</span>
         </div>
         <p class="review-question">${escapeHtml(item.question)}</p>
-        <p>あなたの回答: ${escapeHtml(selected)} ${escapeHtml(selectedOption?.text || "")}</p>
-        <p>正解: ${escapeHtml(item.answer)} ${escapeHtml(answerOption?.text || "")}</p>
+        <p>あなたの回答: ${escapeHtml(selectedDisplay || selected)} ${escapeHtml(selectedOption?.text || "")}</p>
+        <p>正解: ${escapeHtml(answerDisplay || item.answer)} ${escapeHtml(answerOption?.text || "")}</p>
         <p class="explanation">${escapeHtml(explanationFor(item))}</p>
       `;
       els.reviewList.append(row);
