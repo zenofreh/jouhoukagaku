@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>情報科学基礎 クイズ</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="startView" class="start-view">
+      <p class="eyebrow">Foundations of Information Science</p>
+      <h1>情報科学基礎</h1>
+      <p class="lead">出題形式を選んで開始します。回答すると自動で次の問題へ進み、最後に成績と回答を確認できます。</p>
+      <div class="start-stats" aria-label="問題データ">
+        <div>
+          <span>ランダム版</span>
+          <strong id="startQuestionCount">-</strong>
+        </div>
+        <div>
+          <span>全問版</span>
+          <strong id="startVariantCount">-</strong>
+        </div>
+      </div>
+      <div class="mode-actions" aria-label="開始方法">
+        <button id="startRandomButton" class="primary-action" type="button">
+          <span>ランダム版</span>
+          <small>各番号から1問ずつ</small>
+        </button>
+        <button id="startAllButton" class="primary-action secondary-action" type="button">
+          <span>全問版</span>
+          <small>収録問題をすべて回答</small>
+        </button>
+      </div>
+    </section>
+
+    <section id="quizView" class="quiz-view" hidden>
+      <header class="quiz-top">
+        <div>
+          <p class="eyebrow">情報科学基礎</p>
+          <h1>問題 <span id="questionNumber">-</span></h1>
+        </div>
+        <div class="quiz-actions">
+          <button id="homeButton" class="home-button" type="button">ホームへ戻る</button>
+          <div class="score-panel" aria-live="polite">
+            <span id="progressText">0 / 0</span>
+            <strong id="scoreText">0点</strong>
+          </div>
+        </div>
+      </header>
+
+      <div class="progress-track" aria-hidden="true">
+        <div id="progressBar"></div>
+      </div>
+
+      <article class="question-card">
+        <div class="question-head">
+          <span id="variantBadge">候補 -</span>
+          <span id="sourceBadge">画像</span>
+        </div>
+        <h2 id="questionText">読み込み中...</h2>
+        <div id="optionList" class="option-list"></div>
+        <div id="resultMessage" class="result-message" role="status"></div>
+      </article>
+    </section>
+
+    <section id="resultView" class="result-view" hidden>
+      <header class="result-hero">
+        <p class="eyebrow">Result</p>
+        <h1>成績</h1>
+        <strong id="finalScore">0 / 0</strong>
+        <p id="finalMessage">おつかれさまでした。</p>
+        <button id="retryButton" class="primary-action" type="button">もう一度</button>
+      </header>
+
+      <section class="review-panel">
+        <h2>回答確認</h2>
+        <div id="reviewList" class="review-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./data/questions.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
