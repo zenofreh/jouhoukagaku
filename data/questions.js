@@ -966,6 +966,32 @@ window.DEFAULT_QUESTION_DATA = {
       "answer": "B"
     },
     {
+      "id": "img-q20-v2",
+      "number": 20,
+      "variant": 2,
+      "source": "画像追加",
+      "question": "ある商品の購入状況を男女別に集計したところ、女性は購入10人、購入しない30人、男性は購入5人、購入しない30人となった。「女性の購入オッズ ÷ 男性の購入オッズ」としてオッズ比を求めると、最も近いものはどれか。",
+      "options": [
+        {
+          "label": "A",
+          "text": "1.5"
+        },
+        {
+          "label": "B",
+          "text": "3.0"
+        },
+        {
+          "label": "C",
+          "text": "2.0"
+        },
+        {
+          "label": "D",
+          "text": "0.33"
+        }
+      ],
+      "answer": "C"
+    },
+    {
       "id": "img-q21-v1",
       "number": 21,
       "variant": 1,
@@ -1094,6 +1120,32 @@ window.DEFAULT_QUESTION_DATA = {
         }
       ],
       "answer": "D"
+    },
+    {
+      "id": "img-q23-v2",
+      "number": 23,
+      "variant": 2,
+      "source": "画像追加",
+      "question": "ELSIの説明として、最も適切なものはどれか？",
+      "options": [
+        {
+          "label": "A",
+          "text": "科学技術の進歩に伴って発生する倫理的・法的・社会的課題。"
+        },
+        {
+          "label": "B",
+          "text": "自己に関する情報の流れをコントロールする個人の権利。"
+        },
+        {
+          "label": "C",
+          "text": "欧州連合内で2018年に施行された個人データ保護に関する包括的な法律。"
+        },
+        {
+          "label": "D",
+          "text": "AIの開発者、ユーザー、政策決定者が共通して理解し従うべき原則。"
+        }
+      ],
+      "answer": "A"
     },
     {
       "id": "img-q24-v1",
