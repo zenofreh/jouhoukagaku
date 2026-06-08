@@ -495,7 +495,7 @@ window.DEFAULT_QUESTION_DATA = {
           "text": "ア、イ、ウの3つのすべて"
         }
       ],
-      "answer": "B"
+      "answer": "C"
     },
     {
       "id": "img-q11-v1",
