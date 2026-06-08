@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>情報科学基礎 クイズ</title>
-  <link rel="stylesheet" href="./styles.css?v=20260608-5">
+  <link rel="stylesheet" href="./styles.css?v=20260609-1">
 </head>
 <body>
   <main class="app-shell">
@@ -37,6 +37,25 @@
           <span>そのままにする</span>
         </label>
       </fieldset>
+      <fieldset class="shuffle-setting comprehension-size">
+        <legend>理解度テストの問題数</legend>
+        <label>
+          <input type="radio" name="comprehensionSize" value="10" checked>
+          <span>10問</span>
+        </label>
+        <label>
+          <input type="radio" name="comprehensionSize" value="20">
+          <span>20問</span>
+        </label>
+        <label>
+          <input type="radio" name="comprehensionSize" value="50">
+          <span>50問</span>
+        </label>
+        <label>
+          <input type="radio" name="comprehensionSize" value="all">
+          <span>全問</span>
+        </label>
+      </fieldset>
       <div class="mode-actions" aria-label="開始方法">
         <button id="startRandomButton" class="primary-action" type="button">
           <span>ランダム版</span>
@@ -48,7 +67,7 @@
         </button>
         <button id="startComprehensionButton" class="primary-action accent-action" type="button">
           <span>理解度テスト</span>
-          <small>貼り付けテキストから出題</small>
+          <small>選んだ問題数をランダム出題</small>
         </button>
       </div>
     </section>
@@ -104,6 +123,6 @@
 
   <script src="./data/questions.js?v=20260608-4"></script>
   <script src="./data/comprehension.js?v=20260608-5"></script>
-  <script src="./app.js?v=20260608-5"></script>
+  <script src="./app.js?v=20260609-1"></script>
 </body>
 </html>

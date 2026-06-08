@@ -24,6 +24,7 @@
     startAllButton: document.getElementById("startAllButton"),
     startComprehensionButton: document.getElementById("startComprehensionButton"),
     shuffleInputs: [...document.querySelectorAll('input[name="shuffleOptions"]')],
+    comprehensionSizeInputs: [...document.querySelectorAll('input[name="comprehensionSize"]')],
     homeButton: document.getElementById("homeButton"),
     retryButton: document.getElementById("retryButton"),
     retryWrongButton: document.getElementById("retryWrongButton"),
@@ -98,6 +99,12 @@
     return els.shuffleInputs.find((input) => input.checked)?.value !== "off";
   }
 
+  function selectedComprehensionSize() {
+    const value = els.comprehensionSizeInputs.find((input) => input.checked)?.value || "10";
+    if (value === "all") return state.comprehensionQuestions.length;
+    return Math.min(Number(value), state.comprehensionQuestions.length);
+  }
+
   function buildQuiz(mode) {
     clearAdvanceTimer();
     state.quiz = mode === "all"
@@ -109,6 +116,16 @@
       : [...state.groups.keys()]
           .sort((a, b) => a - b)
           .map((number) => randomItem(state.groups.get(number)));
+    state.index = 0;
+    state.answers = [];
+    state.locked = false;
+  }
+
+  function buildLimitedRandomQuiz(questions, count) {
+    clearAdvanceTimer();
+    state.quiz = shuffled(questions)
+      .slice(0, count)
+      .sort((a, b) => a.number - b.number);
     state.index = 0;
     state.answers = [];
     state.locked = false;
@@ -137,6 +154,10 @@
     state.shuffleOptions = selectedShuffleSetting();
     if (dataset === "comprehension") {
       activateDataset("理解度テスト", state.comprehensionQuestions);
+      buildLimitedRandomQuiz(state.comprehensionQuestions, selectedComprehensionSize());
+      showOnly("quiz");
+      renderQuestion();
+      return;
     } else {
       activateDataset("情報科学基礎", state.examQuestions);
     }
