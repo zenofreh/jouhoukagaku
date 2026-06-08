@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>情報科学基礎 クイズ</title>
-  <link rel="stylesheet" href="./styles.css?v=20260608-4">
+  <link rel="stylesheet" href="./styles.css?v=20260608-5">
 </head>
 <body>
   <main class="app-shell">
@@ -20,6 +20,10 @@
         <div>
           <span>全問版</span>
           <strong id="startVariantCount">-</strong>
+        </div>
+        <div>
+          <span>理解度テスト</span>
+          <strong id="startComprehensionCount">-</strong>
         </div>
       </div>
       <fieldset class="shuffle-setting">
@@ -42,13 +46,17 @@
           <span>全問版</span>
           <small>収録問題をすべて回答</small>
         </button>
+        <button id="startComprehensionButton" class="primary-action accent-action" type="button">
+          <span>理解度テスト</span>
+          <small>貼り付けテキストから出題</small>
+        </button>
       </div>
     </section>
 
     <section id="quizView" class="quiz-view" hidden>
       <header class="quiz-top">
         <div>
-          <p class="eyebrow">情報科学基礎</p>
+          <p id="quizTitle" class="eyebrow">情報科学基礎</p>
           <h1>問題 <span id="questionNumber">-</span></h1>
         </div>
         <div class="quiz-actions">
@@ -81,7 +89,10 @@
         <h1>成績</h1>
         <strong id="finalScore">0 / 0</strong>
         <p id="finalMessage">おつかれさまでした。</p>
-        <button id="retryButton" class="primary-action" type="button">もう一度</button>
+        <div class="result-actions">
+          <button id="retryWrongButton" class="primary-action" type="button">間違えた問題だけ再挑戦</button>
+          <button id="retryButton" class="primary-action secondary-action" type="button">ホームへ戻る</button>
+        </div>
       </header>
 
       <section class="review-panel">
@@ -92,6 +103,7 @@
   </main>
 
   <script src="./data/questions.js?v=20260608-4"></script>
-  <script src="./app.js?v=20260608-4"></script>
+  <script src="./data/comprehension.js?v=20260608-5"></script>
+  <script src="./app.js?v=20260608-5"></script>
 </body>
 </html>

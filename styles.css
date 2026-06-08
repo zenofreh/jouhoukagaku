@@ -97,7 +97,7 @@ h1 {
 
 .start-stats {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 180px));
+  grid-template-columns: repeat(3, minmax(0, 180px));
   gap: 10px;
 }
 
@@ -186,6 +186,16 @@ h1 {
 .secondary-action:hover {
   background: #e8f2f5;
   color: var(--accent-dark);
+}
+
+.accent-action {
+  border-color: #0f7a4f;
+  background: #0f7a4f;
+}
+
+.accent-action:hover {
+  border-color: #0b5d3d;
+  background: #0b5d3d;
 }
 
 .quiz-top {
@@ -338,6 +348,12 @@ h1 {
   margin: 14px 0 8px;
   font-size: clamp(42px, 8vw, 72px);
   line-height: 1;
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .review-panel {

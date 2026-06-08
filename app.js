@@ -2,6 +2,8 @@
   const FEEDBACK_DELAY_MS = 650;
 
   const state = {
+    examQuestions: [],
+    comprehensionQuestions: [],
     allQuestions: [],
     groups: new Map(),
     quiz: [],
@@ -11,6 +13,7 @@
     advanceTimer: null,
     shuffleOptions: true,
     currentOptions: [],
+    activeTitle: "情報科学基礎",
   };
 
   const els = {
@@ -19,14 +22,18 @@
     resultView: document.getElementById("resultView"),
     startRandomButton: document.getElementById("startRandomButton"),
     startAllButton: document.getElementById("startAllButton"),
+    startComprehensionButton: document.getElementById("startComprehensionButton"),
     shuffleInputs: [...document.querySelectorAll('input[name="shuffleOptions"]')],
     homeButton: document.getElementById("homeButton"),
     retryButton: document.getElementById("retryButton"),
+    retryWrongButton: document.getElementById("retryWrongButton"),
     startQuestionCount: document.getElementById("startQuestionCount"),
     startVariantCount: document.getElementById("startVariantCount"),
+    startComprehensionCount: document.getElementById("startComprehensionCount"),
     progressText: document.getElementById("progressText"),
     scoreText: document.getElementById("scoreText"),
     progressBar: document.getElementById("progressBar"),
+    quizTitle: document.getElementById("quizTitle"),
     questionNumber: document.getElementById("questionNumber"),
     variantBadge: document.getElementById("variantBadge"),
     sourceBadge: document.getElementById("sourceBadge"),
@@ -107,6 +114,12 @@
     state.locked = false;
   }
 
+  function activateDataset(title, questions) {
+    state.activeTitle = title;
+    state.allQuestions = [...questions];
+    regroup();
+  }
+
   function clearAdvanceTimer() {
     if (!state.advanceTimer) return;
     window.clearTimeout(state.advanceTimer);
@@ -120,9 +133,32 @@
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }
 
-  function startQuiz(mode) {
+  function startQuiz(mode, dataset = "exam") {
     state.shuffleOptions = selectedShuffleSetting();
+    if (dataset === "comprehension") {
+      activateDataset("理解度テスト", state.comprehensionQuestions);
+    } else {
+      activateDataset("情報科学基礎", state.examQuestions);
+    }
     buildQuiz(mode);
+    showOnly("quiz");
+    renderQuestion();
+  }
+
+  function startWrongOnlyQuiz() {
+    const wrongItems = state.answers
+      .filter((entry) => !entry.correct)
+      .map((entry) => entry.item);
+
+    if (!wrongItems.length) return;
+
+    clearAdvanceTimer();
+    state.shuffleOptions = selectedShuffleSetting();
+    state.quiz = wrongItems;
+    state.index = 0;
+    state.answers = [];
+    state.locked = false;
+    state.currentOptions = [];
     showOnly("quiz");
     renderQuestion();
   }
@@ -157,11 +193,14 @@
     const variants = state.groups.get(item.number) || [];
     const progress = state.quiz.length ? ((state.index) / state.quiz.length) * 100 : 0;
 
+    els.quizTitle.textContent = state.activeTitle;
     els.progressText.textContent = `${state.index + 1} / ${state.quiz.length}`;
     els.scoreText.textContent = `${score()}点`;
     els.progressBar.style.width = `${progress}%`;
     els.questionNumber.textContent = item.number;
-    els.variantBadge.textContent = `候補 ${variants.length}`;
+    els.variantBadge.textContent = state.activeTitle === "理解度テスト"
+      ? "理解度"
+      : `候補 ${variants.length}`;
     els.sourceBadge.textContent = item.source || "画像";
     els.questionText.textContent = item.question;
     els.resultMessage.textContent = "";
@@ -234,6 +273,7 @@
     els.progressBar.style.width = "100%";
     els.finalScore.textContent = `${correct} / ${total}`;
     els.finalMessage.textContent = `正答率 ${rate}%`;
+    els.retryWrongButton.hidden = correct === total;
     renderReview();
     showOnly("result");
   }
@@ -280,14 +320,19 @@
   }
 
   function init() {
-    state.allQuestions = normalizeData(window.DEFAULT_QUESTION_DATA || { questions: [] });
+    state.examQuestions = normalizeData(window.DEFAULT_QUESTION_DATA || { questions: [] });
+    state.comprehensionQuestions = normalizeData(window.COMPREHENSION_QUESTION_DATA || { questions: [] });
+    activateDataset("情報科学基礎", state.examQuestions);
     regroup();
     els.startQuestionCount.textContent = `${state.groups.size}問`;
-    els.startVariantCount.textContent = `${state.allQuestions.length}問`;
+    els.startVariantCount.textContent = `${state.examQuestions.length}問`;
+    els.startComprehensionCount.textContent = `${state.comprehensionQuestions.length}問`;
 
     els.startRandomButton.addEventListener("click", () => startQuiz("random"));
     els.startAllButton.addEventListener("click", () => startQuiz("all"));
+    els.startComprehensionButton.addEventListener("click", () => startQuiz("all", "comprehension"));
     els.homeButton.addEventListener("click", returnHome);
+    els.retryWrongButton.addEventListener("click", startWrongOnlyQuiz);
     els.retryButton.addEventListener("click", () => {
       returnHome();
     });
