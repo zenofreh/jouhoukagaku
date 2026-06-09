@@ -4,6 +4,7 @@
   const state = {
     examQuestions: [],
     comprehensionQuestions: [],
+    june09Questions: [],
     allQuestions: [],
     groups: new Map(),
     quiz: [],
@@ -23,6 +24,7 @@
     startRandomButton: document.getElementById("startRandomButton"),
     startAllButton: document.getElementById("startAllButton"),
     startComprehensionButton: document.getElementById("startComprehensionButton"),
+    startJune09Button: document.getElementById("startJune09Button"),
     shuffleInputs: [...document.querySelectorAll('input[name="shuffleOptions"]')],
     comprehensionSizeInputs: [...document.querySelectorAll('input[name="comprehensionSize"]')],
     homeButton: document.getElementById("homeButton"),
@@ -31,6 +33,7 @@
     startQuestionCount: document.getElementById("startQuestionCount"),
     startVariantCount: document.getElementById("startVariantCount"),
     startComprehensionCount: document.getElementById("startComprehensionCount"),
+    startJune09Count: document.getElementById("startJune09Count"),
     progressText: document.getElementById("progressText"),
     scoreText: document.getElementById("scoreText"),
     progressBar: document.getElementById("progressBar"),
@@ -158,6 +161,8 @@
       showOnly("quiz");
       renderQuestion();
       return;
+    } else if (dataset === "june09") {
+      activateDataset("6/9日テスト", state.june09Questions);
     } else {
       activateDataset("情報科学基礎", state.examQuestions);
     }
@@ -343,15 +348,18 @@
   function init() {
     state.examQuestions = normalizeData(window.DEFAULT_QUESTION_DATA || { questions: [] });
     state.comprehensionQuestions = normalizeData(window.COMPREHENSION_QUESTION_DATA || { questions: [] });
+    state.june09Questions = normalizeData(window.JUNE09_QUESTION_DATA || { questions: [] });
     activateDataset("情報科学基礎", state.examQuestions);
     regroup();
     els.startQuestionCount.textContent = `${state.groups.size}問`;
     els.startVariantCount.textContent = `${state.examQuestions.length}問`;
     els.startComprehensionCount.textContent = `${state.comprehensionQuestions.length}問`;
+    els.startJune09Count.textContent = `${state.june09Questions.length}問`;
 
     els.startRandomButton.addEventListener("click", () => startQuiz("random"));
     els.startAllButton.addEventListener("click", () => startQuiz("all"));
     els.startComprehensionButton.addEventListener("click", () => startQuiz("all", "comprehension"));
+    els.startJune09Button.addEventListener("click", () => startQuiz("all", "june09"));
     els.homeButton.addEventListener("click", returnHome);
     els.retryWrongButton.addEventListener("click", startWrongOnlyQuiz);
     els.retryButton.addEventListener("click", () => {

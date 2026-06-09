@@ -97,7 +97,7 @@ h1 {
 
 .start-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 180px));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 180px));
   gap: 10px;
 }
 

@@ -1,0 +1,357 @@
+window.JUNE09_QUESTION_DATA = {
+  "version": 1,
+  "title": "6/9日テスト",
+  "description": "2026年6月9日のテスト用に追加した問題データです。",
+  "questions": [
+    {
+      "id": "june09-q01",
+      "number": 1,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "工場のロボットアームが、組み立ての成功で報酬・失敗でペナルティを受け取りながら、試行錯誤で動作を学ぶ方法はどれか",
+      "options": [
+        { "label": "A", "text": "標本調査" },
+        { "label": "B", "text": "教師なし学習" },
+        { "label": "C", "text": "強化学習" },
+        { "label": "D", "text": "教師あり学習" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q02",
+      "number": 2,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "再現性の高い実験を行い、高精度のセンサーで自動的に測定値を記録して得られるデータは、どの区分にあたるか",
+      "options": [
+        { "label": "A", "text": "調査データ" },
+        { "label": "B", "text": "ログデータ" },
+        { "label": "C", "text": "実験データ" },
+        { "label": "D", "text": "観測データ" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q03",
+      "number": 3,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "次のうち、非構造化データにあてはまるものはどれか",
+      "options": [
+        { "label": "A", "text": "文書（テキスト）・画像・音声・動画など、事前のデータモデルがないデータ" },
+        { "label": "B", "text": "リレーショナルデータベースに格納された2次元の表" },
+        { "label": "C", "text": "Excelスプレッドシートで管理された表形式のデータ" },
+        { "label": "D", "text": "事前に項目名や並び方をそろえたデータ" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q04",
+      "number": 4,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "「この商品を買った人は、あの商品も買う可能性が高い」といった項目間の関連性を、購買履歴などの大量データから見つけ出す手法はどれか",
+      "options": [
+        { "label": "A", "text": "クラスタリング" },
+        { "label": "B", "text": "予測" },
+        { "label": "C", "text": "アソシエーション分析" },
+        { "label": "D", "text": "層別" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q05",
+      "number": 5,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "自家用車を持つ人がドライバーとして登録し、乗客がアプリで車を呼ぶUberのようなサービスは、どのキーワードに最も関係が深いか",
+      "options": [
+        { "label": "A", "text": "レコメンデーション" },
+        { "label": "B", "text": "生成AI" },
+        { "label": "C", "text": "サーベイランス" },
+        { "label": "D", "text": "シェアリングエコノミー" }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "june09-q06",
+      "number": 6,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "CPUと主記憶装置の動作速度の差を緩和するため、CPU内部に置かれる高速なメモリはどれか",
+      "options": [
+        { "label": "A", "text": "補助記憶装置" },
+        { "label": "B", "text": "ハードディスク" },
+        { "label": "C", "text": "主記憶装置" },
+        { "label": "D", "text": "キャッシュメモリ" }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "june09-q07",
+      "number": 7,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "画像描画に特化し、数千を超える多数の演算ユニットを持ち、並列処理に特化した演算装置はどれか",
+      "options": [
+        { "label": "A", "text": "主記憶装置" },
+        { "label": "B", "text": "CPU" },
+        { "label": "C", "text": "GPU" },
+        { "label": "D", "text": "キャッシュメモリ" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q08",
+      "number": 8,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "光ディスクのうち、最も短い波長の青紫色レーザーを使い、最も大きな記録容量をもつものはどれか",
+      "options": [
+        { "label": "A", "text": "Blu-ray Disc（BD）" },
+        { "label": "B", "text": "フロッピーディスク" },
+        { "label": "C", "text": "CD" },
+        { "label": "D", "text": "DVD" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q09",
+      "number": 9,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "C言語やPythonなどで書かれたプログラムを、コンピュータが理解できる機械語に変換するソフトウェアはどれか",
+      "options": [
+        { "label": "A", "text": "言語プロセッサ（コンパイラなど）" },
+        { "label": "B", "text": "デバイスドライバ" },
+        { "label": "C", "text": "カーネル" },
+        { "label": "D", "text": "ミドルウェア" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q10",
+      "number": 10,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "英数字と記号を7ビットで表現する、米国規格協会（ANSI）が定めた文字コードはどれか",
+      "options": [
+        { "label": "A", "text": "EUC" },
+        { "label": "B", "text": "ASCII" },
+        { "label": "C", "text": "シフトJIS" },
+        { "label": "D", "text": "UTF-8" }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "june09-q11",
+      "number": 11,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "画像フォーマットの説明について、正しいものの組み合わせを選べ。\nア. PNGはフルカラーが扱える可逆圧縮の形式で、透明色も扱える。\nイ. GIFは24ビットのフルカラーが扱える非可逆圧縮の形式である。\nウ. BMPは圧縮していないためデータ量が大きい。",
+      "options": [
+        { "label": "A", "text": "アとウだけ" },
+        { "label": "B", "text": "イとウだけ" },
+        { "label": "C", "text": "ア、イ、ウのすべて" },
+        { "label": "D", "text": "アとイだけ" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q12",
+      "number": 12,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "同一のLAN内部で、複数の機器同士を相互に接続する装置はどれか",
+      "options": [
+        { "label": "A", "text": "スイッチ（スイッチングハブ）" },
+        { "label": "B", "text": "ISP" },
+        { "label": "C", "text": "ONU（回線終端装置）" },
+        { "label": "D", "text": "ルータ" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q13",
+      "number": 13,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "大きなデータを送るとき、ひとつながりのまま送らず、パケットと呼ばれる一定サイズに分割して送るのはなぜか。最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "送信先のIPアドレスを省略できるようにするため" },
+        { "label": "B", "text": "通信回線を1組の通信だけで専有してしまうのを避け、回線を効率よく共有するため" },
+        { "label": "C", "text": "受信側で並べ替えをしなくても済むようにするため" },
+        { "label": "D", "text": "データの暗号化を不要にするため" }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "june09-q14",
+      "number": 14,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "1つのデータを送るために、TCP/IPでは複数のプロトコル（HTTP、IP、Ethernetなど）が役割分担をしている。このように役割を階層に分けておくことの利点として、最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "パケットへの分割が不要になる" },
+        { "label": "B", "text": "IPアドレスが不要になる" },
+        { "label": "C", "text": "それぞれの層が自分の役割に専念でき、一部を変更しても他の層に影響が及びにくい" },
+        { "label": "D", "text": "通信内容が自動的に暗号化される" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q15",
+      "number": 15,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "プライベートIPアドレスを持つ機器がインターネットと通信するために、IPアドレスに加えてポート番号も変換し、複数の機器を識別する技術はどれか",
+      "options": [
+        { "label": "A", "text": "DNS" },
+        { "label": "B", "text": "NAPT" },
+        { "label": "C", "text": "NAT" },
+        { "label": "D", "text": "DHCP" }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "june09-q16",
+      "number": 16,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "「example.co.jp」というドメイン名が示す組織として、最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "日本の企業" },
+        { "label": "B", "text": "日本の政府機関" },
+        { "label": "C", "text": "日本の教育機関" },
+        { "label": "D", "text": "アメリカの企業" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q17",
+      "number": 17,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "公開鍵暗号方式の特徴として、最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "暗号化と復号に必ず同じ鍵を使う" },
+        { "label": "B", "text": "共通鍵暗号方式に比べて演算処理が単純で、大きなデータの暗号化に向く" },
+        { "label": "C", "text": "送り手と受け手の双方が、互いの秘密鍵を共有する必要がある" },
+        { "label": "D", "text": "公開鍵は第三者に知られても、対応する秘密鍵がなければ復号できないため、ネットワーク上で共有できる" }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "june09-q18",
+      "number": 18,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "ある大学で新入生全員に「プログラミング経験の有無（あり／なし）」を尋ねて集計した。この集計の元になるデータの種類として、最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "1変量データ（質的）" },
+        { "label": "B", "text": "1変量データ（量的）" },
+        { "label": "C", "text": "2変量データ（量的）" },
+        { "label": "D", "text": "2変量データ（質的）" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q19",
+      "number": 19,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "データ「2, 4, 6, 8, 10」の平均値はどれか",
+      "options": [
+        { "label": "A", "text": "6" },
+        { "label": "B", "text": "5" },
+        { "label": "C", "text": "10" },
+        { "label": "D", "text": "8" }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "june09-q20",
+      "number": 20,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "箱ひげ図が表す「5数要約」に含まれる値の組み合わせとして、正しいものはどれか",
+      "options": [
+        { "label": "A", "text": "平均・分散・標準偏差・最大値・最小値" },
+        { "label": "B", "text": "最頻値・中央値・平均・範囲・分散" },
+        { "label": "C", "text": "最小値・第1四分位点・中央値・第3四分位点・最大値" },
+        { "label": "D", "text": "最小値・平均・中央値・最頻値・最大値" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q21",
+      "number": 21,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "相関係数が+1に近い値をとるとき、最も適切に言えることはどれか",
+      "options": [
+        { "label": "A", "text": "負の相関が強い" },
+        { "label": "B", "text": "散布図で直線状の強い正の傾向がみられる" },
+        { "label": "C", "text": "外れ値は相関係数にまったく影響しない" },
+        { "label": "D", "text": "必ず一方が他方の原因である（因果関係がある）" }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "june09-q22",
+      "number": 22,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "ホテルのご意見フォームに送られてくる意見の多くが苦情・批判であった。これだけを根拠に「宿泊客の多くが不満をもっている」と結論づけるのは適切でない。この偏りを何と呼ぶか",
+      "options": [
+        { "label": "A", "text": "標本の大きさ不足" },
+        { "label": "B", "text": "生存バイアス" },
+        { "label": "C", "text": "セレクションバイアス" },
+        { "label": "D", "text": "相関と因果の混同" }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "june09-q23",
+      "number": 23,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "ELSIの説明として、最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "欧州連合内で2018年に施行された個人データ保護に関する包括的な法律" },
+        { "label": "B", "text": "システムの構成や処理方法を外部からも理解できる状態" },
+        { "label": "C", "text": "AIがどのような理由で判断を下したのかを分かりやすく説明できる能力" },
+        { "label": "D", "text": "科学技術の進歩に伴って発生する倫理的・法的・社会的課題" }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "june09-q24",
+      "number": 24,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "オンラインサービスが個人データを利用する前に、利用者から積極的に同意を得ることを指す用語はどれか",
+      "options": [
+        { "label": "A", "text": "オプトアウト" },
+        { "label": "B", "text": "匿名加工情報" },
+        { "label": "C", "text": "要配慮個人情報" },
+        { "label": "D", "text": "オプトイン" }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "june09-q25",
+      "number": 25,
+      "variant": 1,
+      "source": "6/9日テスト",
+      "question": "サイバー攻撃や大規模停電などで情報にアクセスできなくなる事態に備える、可用性を確保するための対策の例として最も適切なものはどれか",
+      "options": [
+        { "label": "A", "text": "IDとパスワードによる管理" },
+        { "label": "B", "text": "アクセス権限の限定（アクセス制御）" },
+        { "label": "C", "text": "データのバックアップやシステムの二重化" },
+        { "label": "D", "text": "デジタル署名による改ざん検知" }
+      ],
+      "answer": "C"
+    }
+  ]
+};
