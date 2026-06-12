@@ -849,8 +849,8 @@
     if (!els.remoteStatus) return;
     els.remoteStatus.textContent = message || (
       hasRemoteConfig()
-        ? "オンライン保存が有効です。成績はSupabaseにも記録されます。"
-        : "オンライン保存は未設定です。"
+        ? "保存が有効です"
+        : "保存は未設定です。"
     );
   }
 
@@ -890,10 +890,10 @@
         throw new Error(detail || `Supabase request failed: ${response.status}`);
       }
 
-      renderRemoteStatus("オンラインにも保存しました。");
+      renderRemoteStatus("保存しました。");
     } catch (error) {
       console.warn("Supabase save failed", error);
-      renderRemoteStatus("オンライン保存に失敗しました。ローカルには保存済みです。");
+      renderRemoteStatus("ローカルには保存済みです。");
     }
   }
 
