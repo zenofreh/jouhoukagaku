@@ -4,20 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>情報科学基礎 クイズ</title>
-  <link rel="stylesheet" href="./styles.css?v=20260609-1">
+  <link rel="stylesheet" href="./styles.css?v=20260611-6">
 </head>
 <body>
   <main class="app-shell">
     <section id="startView" class="start-view">
+      <div class="start-toolbar" aria-label="ホーム操作">
+        <button id="openHistoryButton" class="toolbar-button" type="button">学習履歴</button>
+        <button id="openSettingsButton" class="toolbar-button" type="button">設定</button>
+      </div>
       <p class="eyebrow">created by zeno</p>
       <h1>情報科学基礎</h1>
-      <p class="lead">出題形式を選んで開始します。回答すると自動で次の問題へ進み、最後に成績と回答を確認できます。</p>
+      <p class="lead">理解度テストの問題数と進め方を選んで開始します。最後に成績と回答を確認でき、間違えた問題だけ再挑戦できます。</p>
       <div class="start-stats" aria-label="問題データ">
-        <div>
+        <div hidden>
           <span>ランダム版</span>
           <strong id="startQuestionCount">-</strong>
         </div>
-        <div>
+        <div hidden>
           <span>全問版</span>
           <strong id="startVariantCount">-</strong>
         </div>
@@ -25,7 +29,7 @@
           <span>理解度テスト</span>
           <strong id="startComprehensionCount">-</strong>
         </div>
-        <div>
+        <div hidden>
           <span>6/9日テスト</span>
           <strong id="startJune09Count">-</strong>
         </div>
@@ -60,12 +64,20 @@
           <span>全問</span>
         </label>
       </fieldset>
+      <section class="practice-panel" aria-label="復習メニュー">
+        <div>
+          <label for="weakCategorySelect">分野別演習</label>
+          <select id="weakCategorySelect"></select>
+        </div>
+        <button id="startWeakButton" class="secondary-action compact-action" type="button">この分野を練習</button>
+        <button id="startMarkedButton" class="secondary-action compact-action" type="button">要復習だけ解く</button>
+      </section>
       <div class="mode-actions" aria-label="開始方法">
-        <button id="startRandomButton" class="primary-action" type="button">
+        <button id="startRandomButton" class="primary-action" type="button" hidden>
           <span>ランダム版</span>
           <small>各番号から1問ずつ</small>
         </button>
-        <button id="startAllButton" class="primary-action secondary-action" type="button">
+        <button id="startAllButton" class="primary-action secondary-action" type="button" hidden>
           <span>全問版</span>
           <small>収録問題をすべて回答</small>
         </button>
@@ -73,11 +85,72 @@
           <span>理解度テスト</span>
           <small>選んだ問題数をランダム出題</small>
         </button>
-        <button id="startJune09Button" class="primary-action accent-action" type="button">
+        <button id="startJune09Button" class="primary-action accent-action" type="button" hidden>
           <span>6/9日テスト</span>
           <small>追加した25問をすべて回答</small>
         </button>
       </div>
+      <section id="settingsPanel" class="floating-panel settings-panel" aria-labelledby="settingsTitle" hidden>
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Settings</p>
+            <h2 id="settingsTitle">設定</h2>
+          </div>
+          <button id="closeSettingsButton" class="toolbar-button" type="button">閉じる</button>
+        </div>
+        <label class="name-field">
+          <span>表示名</span>
+          <input id="playerNameInput" type="text" maxlength="18" autocomplete="nickname" placeholder="名前を入力">
+        </label>
+        <fieldset class="shuffle-setting progression-setting">
+          <legend>進行方法</legend>
+          <label>
+            <input type="radio" name="progressionMode" value="auto" checked>
+            <span>
+              <strong>自動進行</strong>
+              <small>回答後すぐ次へ進む</small>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="progressionMode" value="manual">
+            <span>
+              <strong>手動進行</strong>
+              <small>前へ/次へで見直しながら進む</small>
+            </span>
+          </label>
+        </fieldset>
+        <fieldset class="shuffle-setting">
+          <legend>解説表示</legend>
+          <label>
+            <input type="radio" name="explanationMode" value="result" checked>
+            <span>
+              <strong>最後に見る</strong>
+              <small>成績画面で詳しく確認</small>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="explanationMode" value="instant">
+            <span>
+              <strong>すぐ見る</strong>
+              <small>回答直後に要点を表示</small>
+            </span>
+          </label>
+        </fieldset>
+      </section>
+      <section id="historyPanel" class="floating-panel history-panel" aria-labelledby="historyTitle" hidden>
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Records</p>
+            <h2 id="historyTitle">学習履歴</h2>
+          </div>
+          <button id="closeHistoryButton" class="toolbar-button" type="button">閉じる</button>
+        </div>
+        <div>
+          <p id="historySummary">まだ記録がありません。</p>
+          <p id="remoteStatus" class="remote-status">オンライン保存は未設定です。</p>
+        </div>
+        <ol id="localLeaderboard" class="leaderboard"></ol>
+      </section>
     </section>
 
     <section id="quizView" class="quiz-view" hidden>
@@ -107,6 +180,11 @@
         <h2 id="questionText">読み込み中...</h2>
         <div id="optionList" class="option-list"></div>
         <div id="resultMessage" class="result-message" role="status"></div>
+        <div id="inlineExplanation" class="inline-explanation" hidden></div>
+        <div id="manualNav" class="manual-nav" hidden>
+          <button id="prevQuestionButton" class="nav-button secondary-action" type="button">前へ</button>
+          <button id="nextQuestionButton" class="nav-button" type="button">次へ</button>
+        </div>
       </article>
     </section>
 
@@ -118,6 +196,7 @@
         <p id="finalMessage">おつかれさまでした。</p>
         <div class="result-actions">
           <button id="retryWrongButton" class="primary-action" type="button">間違えた問題だけ再挑戦</button>
+          <button id="retryMarkedButton" class="primary-action" type="button">要復習だけ再挑戦</button>
           <button id="retryButton" class="primary-action secondary-action" type="button">ホームへ戻る</button>
         </div>
       </header>
@@ -132,6 +211,7 @@
   <script src="./data/questions.js?v=20260608-4"></script>
   <script src="./data/comprehension.js?v=20260608-5"></script>
   <script src="./data/june09.js?v=20260609-1"></script>
-  <script src="./app.js?v=20260609-2"></script>
+  <script src="./data/supabase-config.js?v=20260612-1"></script>
+  <script src="./app.js?v=20260612-1"></script>
 </body>
 </html>
